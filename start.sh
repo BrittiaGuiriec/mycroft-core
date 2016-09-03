@@ -10,11 +10,11 @@ case $1 in
 	"cli") SCRIPT=${TOP}/mycroft/client/text/cli.py ;;
 	"audiotest") SCRIPT=${TOP}/mycroft/util/audio_test.py ;;
 	"collector") SCRIPT=${TOP}/mycroft_data_collection/cli.py ;;
-	"unittest") SCRIPT=${TOP}/test/test_runner.py ;;
+	"unittest") SCRIPT=${TOP}/test/main.py ;;
 	"audioaccuracytest") SCRIPT=${TOP}/audio-accuracy-test/audio_accuracy_test.py ;;
 	"sdkdoc") SCRIPT=${TOP}/doc/generate_sdk_docs.py ;;
-        "enclosure") SCRIPT=${TOP}/mycroft/client/enclosure/enclosure.py ;;
-        "pairing") SCRIPT=${TOP}/mycroft/pairing/client.py ;;
+    "enclosure") SCRIPT=${TOP}/mycroft/client/enclosure/enclosure.py ;;
+    "pairing") SCRIPT=${TOP}/mycroft/pairing/client.py ;;
 	*) echo "Usage: start.sh [service | skills | skill_container | voice | cli | audiotest | collector | unittest | enclosure | pairing | sdkdoc ]"; exit ;;
 esac
 
