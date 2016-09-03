@@ -19,6 +19,7 @@
 import subprocess
 import sys
 from threading import Thread, Lock
+
 import re
 
 from mycroft.client.speech.listener import RecognizerLoop
@@ -26,8 +27,8 @@ from mycroft.configuration import ConfigurationManager
 from mycroft.messagebus.client.ws import WebsocketClient
 from mycroft.messagebus.message import Message
 from mycroft.tts import tts_factory
+from mycroft.util import kill
 from mycroft.util.log import getLogger
-from mycroft.util import kill, connected
 
 logger = getLogger("SpeechClient")
 client = None
@@ -104,10 +105,7 @@ def main():
     global client
     global loop
     client = WebsocketClient()
-    device_index = config.get('speech_client').get('device_index')
-    if device_index:
-        device_index = int(device_index)
-    loop = RecognizerLoop(device_index=device_index)
+    loop = RecognizerLoop()
     loop.on('recognizer_loop:utterance', handle_utterance)
     loop.on('recognizer_loop:record_begin', handle_record_begin)
     loop.on('recognizer_loop:wakeword', handle_wakeword)
