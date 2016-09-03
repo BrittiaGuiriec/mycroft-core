@@ -109,5 +109,10 @@ def connected(host="8.8.8.8", port=53, timeout=3):
             return False
 
 
+def validate_param(value, name):
+    if not value:
+        raise ValueError("Missing or empty %s in mycroft.conf " % name)
+
+
 class CerberusAccessDenied(Exception):
     pass
