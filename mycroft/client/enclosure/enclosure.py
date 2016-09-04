@@ -80,11 +80,11 @@ class EnclosureReader(Thread):
 
         if "volume.up" in data:
             self.client.emit(
-                Message("IncreaseVolumeIntent", metadata={'play_sound': True}))
+                Message("IncreaseVolumeIntent", {'play_sound': True}))
 
         if "volume.down" in data:
             self.client.emit(
-                Message("DecreaseVolumeIntent", metadata={'play_sound': True}))
+                Message("DecreaseVolumeIntent", {'play_sound': True}))
 
         if "system.test.begin" in data:
             self.client.emit(Message('recognizer_loop:sleep'))
@@ -96,7 +96,7 @@ class EnclosureReader(Thread):
             mixer = Mixer()
             prev_vol = mixer.getvolume()[0]
             mixer.setvolume(35)
-            self.client.emit(Message("speak", metadata={
+            self.client.emit(Message("speak", {
                 'utterance': "I am testing one two three"}))
 
             time.sleep(0.5)  # Prevents recording the loud button press
@@ -111,7 +111,7 @@ class EnclosureReader(Thread):
         if "unit.shutdown" in data:
             self.client.emit(
                 Message("enclosure.eyes.timedspin",
-                        metadata={'length': 12000}))
+                        {'length': 12000}))
             self.client.emit(Message("enclosure.mouth.reset"))
             subprocess.call('systemctl poweroff -i', shell=True)
 
@@ -261,7 +261,7 @@ class Enclosure:
                            self.mouth.reset)
 
     def speak(self, text):
-        self.client.emit(Message("speak", metadata={'utterance': text}))
+        self.client.emit(Message("speak", {'utterance': text}))
 
     def run(self):
         try:
