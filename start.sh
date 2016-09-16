@@ -13,9 +13,8 @@ case $1 in
 	"unittest") SCRIPT=${TOP}/test/main.py ;;
 	"audioaccuracytest") SCRIPT=${TOP}/audio-accuracy-test/audio_accuracy_test.py ;;
 	"sdkdoc") SCRIPT=${TOP}/doc/generate_sdk_docs.py ;;
-    "enclosure") SCRIPT=${TOP}/mycroft/client/enclosure/enclosure.py ;;
-    "pairing") SCRIPT=${TOP}/mycroft/pairing/client.py ;;
-	*) echo "Usage: start.sh [service | skills | skill_container | voice | cli | audiotest | collector | unittest | enclosure | pairing | sdkdoc ]"; exit ;;
+    "enclosure") SCRIPT=${TOP}/mycroft/client/enclosure/main.py ;;
+	*) echo "Usage: start.sh [service | skills | skill_container | voice | cli | audiotest | collector | unittest | enclosure | sdkdoc ]"; exit ;;
 esac
 
 echo "Starting $@"
